@@ -23,6 +23,48 @@ import os
 
 
 #MODULO 1 -> CLIENTE
+
+class Cliente:
+    def __init__(self, cpf_cliente, nome_cliente):
+        self.cpf_cliente = cpf_cliente
+        self.nome_cliente = nome_cliente
+
+clientes = []
+
+def criar_clientes():
+    cpf_cliente = input("Digite o CPF do cliente: ")
+    nome_cliente = input("Digite o nome do cliente: ")
+    cliente = Cliente(cpf_cliente, nome_cliente)
+    clientes.append(cliente)
+    print("Cliente criado com sucesso!")
+
+def listar_clientes():
+    print("CLIENTES:")
+    for cliente in clientes:
+        print(f"\n | CPF: {cliente.cpf_cliente} | NOME: {cliente.nome_cliente} | ")
+        print("-")
+
+def atualizar_clientes():
+    cpf_cliente = input("Digite o CPF do cliente que deseja atualizar: ")
+    cliente = next((c for c in clientes if c.cpf_cliente == cpf_cliente), None)
+    if cliente is None:
+        print("Cliente não encontrado.")
+        return
+    novo_nome = input("Digite o novo nome do cliente: ")
+    cliente.nome_cliente = novo_nome
+    print("Cliente atualizado com sucesso!")
+
+def deletar_cliente():
+    cpf_cliente = input("Digite o CPF do cliente que deseja deletar: ")
+    cliente = next((c for c in clientes if c.cpf_cliente == cpf_cliente), None)
+    if cliente is None:
+        print("Cliente não encontrado.")
+        return
+    clientes.remove(cliente)
+    print("Cliente deletado com sucesso!")
+
+
+
 #MODULO 2 -> PRODUTO
 #MODULO 3 -> COMPRA
 # MENU PRINCIPAL - SISTEMA
