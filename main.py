@@ -24,7 +24,7 @@ import os
 
 #MODULO 1 -> CLIENTE
 class Cliente:
-    def _init_(self, cpf_cliente, nome_cliente):
+    def __init__(self, cpf_cliente, nome_cliente):
         self.cpf_cliente = cpf_cliente
         self.nome_cliente = nome_cliente
 
@@ -65,7 +65,7 @@ def deletar_cliente():
 
 #MODULO 2 -> PRODUTO
 class Produto:
-    def _init_(self, cod_produto, nome_produto, valor_produto):
+    def __init__(self, cod_produto, nome_produto, valor_produto):
         self.cod_produto = cod_produto
         self.nome_produto = nome_produto
         self.valor_produto = valor_produto
@@ -117,7 +117,7 @@ def deletar_produto():
 
 #MODULO 3 -> COMPRA
 class Compra:
-    def _init_(self, cliente, produto, qtd):
+    def __init__(self, cliente, produto, qtd):
         self.cliente = cliente
         self.produto = produto
         self.qtd = qtd
