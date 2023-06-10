@@ -66,6 +66,55 @@ def deletar_cliente():
 
 
 #MODULO 2 -> PRODUTO
+class Produto:
+    def _init_(self, cod_produto, nome_produto, valor_produto):
+        self.cod_produto = cod_produto
+        self.nome_produto = nome_produto
+        self.valor_produto = valor_produto
+
+produtos = []
+
+def criar_produtos():
+    cod_produto = input("Digite o código do produto: ")
+    nome_produto = input("Digite o nome do produto: ")
+    valor_produto = float(input("Digite o valor do produto: "))
+    produto = Produto(cod_produto, nome_produto, valor_produto)
+    produtos.append(produto)
+    print("Produto criado com sucesso!")
+
+def listar_produtos():
+    print("PRODUTOS:")
+    for produto in produtos:
+        print(f"\n | CÓDIGO: {produto.cod_produto} | NOME: {produto.nome_produto} | VALOR: {produto.valor_produto} | ")
+        print("-")
+
+def atualizar_produtos():
+    cod_produto = input("Digite o código do produto que deseja atualizar: ")
+    produto = next((p for p in produtos if p.cod_produto == cod_produto), None)
+    if produto is None:
+        print("Produto não encontrado.")
+        return
+    
+    nome_or_value = input("1 - Modficar o Nome do Produro\n2 - Modificar o Preco do Produto\n: ")
+
+    if nome_or_value == '1':
+        novo_nome = input("Digite o novo nome do Produto: ")
+        produto.nome_produto = novo_nome
+        print("Nome do Produto atualizado com sucesso!")
+    elif nome_or_value == '2':
+        novo_valor = float(input("Digite o novo valor do produto: "))
+        produto.valor_produto = novo_valor
+        print("Valor do Produto atualizado com sucesso!")
+
+def deletar_produto():
+    cod_produto = input("Digite o código do produto que deseja deletar: ")
+    produto = next((p for p in produtos if p.cod_produto == cod_produto), None)
+    if produto is None:
+        print("Produto não encontrado.")
+        return
+    produtos.remove(produto)
+    print("Produto deletado com sucesso!")
+
 #MODULO 3 -> COMPRA
 # MENU PRINCIPAL - SISTEMA
 
