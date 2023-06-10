@@ -23,9 +23,8 @@ import os
 
 
 #MODULO 1 -> CLIENTE
-
 class Cliente:
-    def __init__(self, cpf_cliente, nome_cliente):
+    def _init_(self, cpf_cliente, nome_cliente):
         self.cpf_cliente = cpf_cliente
         self.nome_cliente = nome_cliente
 
@@ -62,7 +61,6 @@ def deletar_cliente():
         return
     clientes.remove(cliente)
     print("Cliente deletado com sucesso!")
-
 
 
 #MODULO 2 -> PRODUTO
@@ -115,7 +113,62 @@ def deletar_produto():
     produtos.remove(produto)
     print("Produto deletado com sucesso!")
 
+
+
 #MODULO 3 -> COMPRA
+class Compra:
+    def _init_(self, cliente, produto, qtd):
+        self.cliente = cliente
+        self.produto = produto
+        self.qtd = qtd
+        self.valor_final = self.produto.valor_produto * self.qtd
+
+compras = []
+
+def criar_compras():
+    cpf_cliente = input("Digite o CPF do cliente: ")
+    cod_produto = input("Digite o código do produto: ")
+    qtd = int(input("Digite a quantidade: "))
+    
+    cliente = next((c for c in clientes if c.cpf_cliente == cpf_cliente), None)
+    produto = next((p for p in produtos if p.cod_produto == cod_produto), None)
+    
+    if cliente is None or produto is None:
+        print("Cliente ou produto não encontrado.")
+        return
+    
+    compra = Compra(cliente, produto, qtd)
+    compras.append(compra)
+    print("Compra criada com sucesso!")
+
+def listar_compras():
+    print("COMPRAS:")
+    for compra in compras:
+        print(f"\n | CLIENTE: {compra.cliente.nome_cliente} | PRODUTO: {compra.produto.nome_produto} | QUANTIDADE: {compra.qtd} | VALOR FINAL: {compra.valor_final} | ")
+        print("-")
+
+def atualizar_compras():
+    cpf_cliente = input("Digite o CPF do cliente da compra que deseja atualizar: ")
+    cod_produto = input("Digite o código do produto da compra que deseja atualizar: ")
+    compra = next((c for c in compras if c.cliente.cpf_cliente == cpf_cliente and c.produto.cod_produto == cod_produto), None)
+    if compra is None:
+        print("Compra não encontrada.")
+        return
+    nova_qtd = int(input("Digite a nova quantidade: "))
+    compra.qtd = nova_qtd
+    compra.valor_final = compra.produto.valor_produto * compra.qtd
+    print("Compra atualizada com sucesso!")
+
+def deletar_compra():
+    cpf_cliente = input("Digite o CPF do cliente da compra que deseja deletar: ")
+    cod_produto = input("Digite o código do produto da compra que deseja deletar: ")
+    compra = next((c for c in compras if c.cliente.cpf_cliente == cpf_cliente and c.produto.cod_produto == cod_produto), None)
+    if compra is None:
+        print("Compra não encontrada.")
+        return
+    compras.remove(compra)
+    print("Compra deletada com sucesso!")
+
 # MENU PRINCIPAL - SISTEMA
 
 while True:
