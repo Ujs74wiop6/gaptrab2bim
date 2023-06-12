@@ -16,8 +16,8 @@ CRUD: Create, Read, Update, Delete
 
 *<h2>Entidades</h2>* 
    - [X] CLIENTE
-   - [ ] PRODUTO
-   - [ ] COMPRA 
+   - [X] PRODUTO
+   - [X] COMPRA 
 
 </details>
 
